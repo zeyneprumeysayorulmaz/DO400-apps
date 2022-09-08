@@ -23,4 +23,17 @@ pipeline{
 
         // Add the "Deploy" stage here
     }
+    agent any
+
+    stages{
+        stage('deploy'){
+            steps {
+		sh '''
+		   oc project vjvhjz-deploy-strategies
+		   oc start-build greeting-service --follow --wait
+		'''
+            }
+        }
+    }    
+
 }
